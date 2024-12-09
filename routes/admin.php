@@ -6,6 +6,8 @@ use App\Admin\Http\Controllers\Auth\AuthController;
 use App\Admin\Http\Controllers\Dashboard\DashboardController;
 use App\Admin\Http\Controllers\Module\ModuleController;
 use App\Admin\Http\Controllers\Permission\PermissionController;
+use App\Admin\Http\Controllers\Post\PostCatalogueController;
+use App\Admin\Http\Controllers\Post\PostController;
 use App\Admin\Http\Controllers\Role\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -126,6 +128,49 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
             Route::middleware(['permission:deleteCustomer'])->group(function () {
                 Route::delete('/delete/{id}', [CustomerController::class, 'delete'])->name('delete');
+            });
+        });
+
+        Route::prefix('post-catalogue')->as('post_catalogue.')->group(function () {
+            Route::middleware(['permission:viewPostCatalogue'])->group(function () {
+                Route::get('/', [PostCatalogueController::class, 'index'])->name('index');
+                Route::get('/get', [PostCatalogueController::class, 'get'])->name('get');
+            });
+
+            Route::middleware(['permission:createPostCatalogue'])->group(function () {
+                Route::get('/create', [PostCatalogueController::class, 'create'])->name('create');
+                Route::post('/store', [PostCatalogueController::class, 'store'])->name('store');
+            });
+
+            Route::middleware(['permission:editPostCatalogue'])->group(function () {
+                Route::get('/edit/{id}', [PostCatalogueController::class, 'edit'])->name('edit');
+                Route::put('/update', [PostCatalogueController::class, 'update'])->name('update');
+                Route::patch('/update-status', [PostCatalogueController::class, 'updateStatus'])->name('update.status');
+            });
+
+            Route::middleware(['permission:deletePostCatalogue'])->group(function () {
+                Route::delete('/delete/{id}', [PostCatalogueController::class, 'delete'])->name('delete');
+            });
+        });
+
+        Route::prefix('post')->as('post.')->group(function () {
+            Route::middleware(['permission:viewPost'])->group(function () {
+                Route::get('/', [PostController::class, 'index'])->name('index');
+            });
+
+            Route::middleware(['permission:createPost'])->group(function () {
+                Route::get('/create', [PostController::class, 'create'])->name('create');
+                Route::post('/store', [PostController::class, 'store'])->name('store');
+            });
+
+            Route::middleware(['permission:editPost'])->group(function () {
+                Route::get('/edit/{id}', [PostController::class, 'edit'])->name('edit');
+                Route::put('/update', [PostController::class, 'update'])->name('update');
+                Route::patch('/update-status', [PostController::class, 'updateStatus'])->name('update.status');
+            });
+
+            Route::middleware(['permission:deletePost'])->group(function () {
+                Route::delete('/delete/{id}', [PostController::class, 'delete'])->name('delete');
             });
         });
     });
