@@ -10,7 +10,8 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
             <a href="{{ route('admin.dashboard') }}">
-                <img src="{{ asset('admin/images/logo3.png') }}" width="120" alt="Logo" class="">
+                <img src="{{ asset('admin/images/logo2.png') }}" width="150" alt="Logo"
+                    class="navbar-brand-image">
             </a>
         </h1>
 
