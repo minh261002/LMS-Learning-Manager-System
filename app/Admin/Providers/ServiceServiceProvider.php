@@ -14,6 +14,7 @@ class ServiceServiceProvider extends ServiceProvider
         'App\Admin\Services\Customer\CustomerServiceInterface' => 'App\Admin\Services\Customer\CustomerService',
         'App\Admin\Services\Post\PostCatalogueServiceInterface' => 'App\Admin\Services\Post\PostCatalogueService',
         'App\Admin\Services\Post\PostServiceInterface' => 'App\Admin\Services\Post\PostService',
+        'App\Admin\Services\Category\CategoryServiceInterface' => 'App\Admin\Services\Category\CategoryService',
     ];
     /**
      * Register any application services.
