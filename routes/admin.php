@@ -113,7 +113,6 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::prefix('customer')->as('customer.')->group(function () {
             Route::middleware(['permission:viewCustomer'])->group(function () {
                 Route::get('/', [CustomerController::class, 'index'])->name('index');
-                Route::get('/instuctor', [CustomerController::class, 'instructor'])->name('instructor');
             });
 
             Route::middleware(['permission:createCustomer'])->group(function () {

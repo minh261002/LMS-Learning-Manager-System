@@ -3,7 +3,6 @@
 namespace App\Admin\Http\Controllers\Customer;
 
 use App\Admin\DataTables\Customer\CustomerDataTable;
-use App\Admin\DataTables\Customer\InstructorDataTable;
 use App\Admin\Http\Requests\Customer\CustomerRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Province;
@@ -27,11 +26,6 @@ class CustomerController extends Controller
     public function index(CustomerDataTable $dataTable)
     {
         return $dataTable->render('admin.customer.index');
-    }
-
-    public function instructor(InstructorDataTable $dataTable)
-    {
-        return $dataTable->render('admin.customer.instructor.index');
     }
 
     public function create()
