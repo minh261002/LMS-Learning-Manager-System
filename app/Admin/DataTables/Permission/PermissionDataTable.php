@@ -1,9 +1,9 @@
 <?php
 
-namespace App\DataTables\Permission;
+namespace App\Admin\DataTables\Permission;
 
-use App\DataTables\BaseDataTable;
-use App\Repositories\Permission\PermissionRepositoryInterface;
+use App\Admin\DataTables\BaseDataTable;
+use App\Admin\Repositories\Permission\PermissionRepositoryInterface;
 
 class PermissionDataTable extends BaseDataTable
 {

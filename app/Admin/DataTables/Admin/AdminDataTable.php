@@ -1,9 +1,9 @@
 <?php
 
-namespace App\DataTables\Admin;
+namespace App\Admin\DataTables\Admin;
 
-use App\DataTables\BaseDataTable;
-use App\Repositories\Admin\AdminRepositoryInterface;
+use App\Admin\DataTables\BaseDataTable;
+use App\Admin\Repositories\Admin\AdminRepositoryInterface;
 
 class AdminDataTable extends BaseDataTable
 {

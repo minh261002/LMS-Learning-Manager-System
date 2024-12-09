@@ -1,9 +1,9 @@
 <?php
 
-namespace App\DataTables\Role;
+namespace App\Admin\DataTables\Role;
 
-use App\DataTables\BaseDataTable;
-use App\Repositories\Role\RoleRepositoryInterface;
+use App\Admin\DataTables\BaseDataTable;
+use App\Admin\Repositories\Role\RoleRepositoryInterface;
 
 class RoleDataTable extends BaseDataTable
 {

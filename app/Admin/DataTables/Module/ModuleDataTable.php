@@ -1,9 +1,9 @@
 <?php
 
-namespace App\DataTables\Module;
+namespace App\Admin\DataTables\Module;
 
-use App\DataTables\BaseDataTable;
-use App\Repositories\Module\ModuleRepositoryInterface;
+use App\Admin\DataTables\BaseDataTable;
+use App\Admin\Repositories\Module\ModuleRepositoryInterface;
 
 class ModuleDataTable extends BaseDataTable
 {
