@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTables;
+namespace App\Admin\DataTables;
 
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Column;
