@@ -8,6 +8,8 @@ class RepositoryServiceProvider extends ServiceProvider
 {
     protected $repositories = [
         'App\Admin\Repositories\Module\ModuleRepositoryInterface' => 'App\Admin\Repositories\Module\ModuleRepository',
+        'App\Admin\Repositories\Permission\PermissionRepositoryInterface' => 'App\Admin\Repositories\Permission\PermissionRepository',
+        'App\Admin\Repositories\Role\RoleRepositoryInterface' => 'App\Admin\Repositories\Role\RoleRepository',
     ];
     /**
      * Register any application services.
