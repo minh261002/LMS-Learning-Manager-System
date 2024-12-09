@@ -11,6 +11,7 @@ class RepositoryServiceProvider extends ServiceProvider
         'App\Admin\Repositories\Permission\PermissionRepositoryInterface' => 'App\Admin\Repositories\Permission\PermissionRepository',
         'App\Admin\Repositories\Role\RoleRepositoryInterface' => 'App\Admin\Repositories\Role\RoleRepository',
         'App\Admin\Repositories\Admin\AdminRepositoryInterface' => 'App\Admin\Repositories\Admin\AdminRepository',
+        'App\Admin\Repositories\Customer\CustomerRepositoryInterface' => 'App\Admin\Repositories\Customer\CustomerRepository',
     ];
     /**
      * Register any application services.

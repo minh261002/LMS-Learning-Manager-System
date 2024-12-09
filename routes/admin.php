@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin\Http\Controllers\Admin\AdminController;
+use App\Admin\Http\Controllers\Customer\CustomerController;
 use App\Admin\Http\Controllers\Auth\AuthController;
 use App\Admin\Http\Controllers\Dashboard\DashboardController;
 use App\Admin\Http\Controllers\Module\ModuleController;
@@ -102,6 +103,29 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
             Route::middleware(['permission:deleteAdmin'])->group(function () {
                 Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('delete');
+            });
+        });
+
+
+        Route::prefix('customer')->as('customer.')->group(function () {
+            Route::middleware(['permission:viewCustomer'])->group(function () {
+                Route::get('/', [CustomerController::class, 'index'])->name('index');
+                Route::get('/instuctor', [CustomerController::class, 'instructor'])->name('instructor');
+            });
+
+            Route::middleware(['permission:createCustomer'])->group(function () {
+                Route::get('/create', [CustomerController::class, 'create'])->name('create');
+                Route::post('/store', [CustomerController::class, 'store'])->name('store');
+            });
+
+            Route::middleware(['permission:editCustomer'])->group(function () {
+                Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name('edit');
+                Route::put('/update', [CustomerController::class, 'update'])->name('update');
+                Route::patch('/update-status', [CustomerController::class, 'updateStatus'])->name('update.status');
+            });
+
+            Route::middleware(['permission:deleteCustomer'])->group(function () {
+                Route::delete('/delete/{id}', [CustomerController::class, 'delete'])->name('delete');
             });
         });
     });

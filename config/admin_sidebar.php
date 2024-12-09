@@ -211,8 +211,14 @@ return [
                 'permission' => 'createCustomer'
             ],
             [
-                'title' => 'Danh sách',
+                'title' => 'Khách hàng',
                 'route' => 'admin.customer.index',
+                'icon' => 'ti ti-list fs-3 me-2',
+                'permission' => 'viewCustomer'
+            ],
+            [
+                'title' => 'Người hướng dẫn',
+                'route' => 'admin.customer.instructor',
                 'icon' => 'ti ti-list fs-3 me-2',
                 'permission' => 'viewCustomer'
             ]
