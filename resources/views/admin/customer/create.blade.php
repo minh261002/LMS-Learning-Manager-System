@@ -168,9 +168,23 @@
                                 <h2 class="card-title mb-0">Trạng thái</h2>
                             </div>
                             <div class="card-body">
-                                <select name="status" id="status" class="form-control select2">
+                                <select name="status" id="status" class="form-control">
                                     <option value="2">Đang hoạt động</option>
                                     <option value="1">Tạm khóa</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="card mt-3">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <h2 class="card-title mb-0">Vai trò</h2>
+                            </div>
+                            <div class="card-body">
+                                <select name="role" id="role" class="form-control">
+                                    <option value="user">Khách hàng</option>
+                                    <option value="instructor">
+                                        Giảng viên
+                                    </option>
                                 </select>
                             </div>
                         </div>

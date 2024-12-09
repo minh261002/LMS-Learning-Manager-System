@@ -1,5 +1,5 @@
 @extends('admin.layout.master')
-@section('title', 'Quản lý bài viết')
+@section('title', ' Quản lý người hướng dẫn')
 
 @push('styles')
 @endpush
@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h3 class="card-title">
-                        Quản lý bài viết
+                        Quản lý người hướng dẫn
                     </h3>
 
                     <nav aria-label="breadcrumb">
@@ -22,7 +22,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Quản lý bài viết
+                                Quản lý người hướng dẫn
                             </li>
                         </ol>
                     </nav>
@@ -36,10 +36,10 @@
                 <div>
                     <div class="card-header">
                         <h3 class="card-title">
-                            Danh sách bài viết
+                            Danh sách người hướng dẫn
                         </h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.post.create') }}" class="btn btn-primary">
+                            <a href="{{ route('admin.customer.create') }}" class="btn btn-primary">
                                 <i class="ti ti-plus fs-4 me-1"></i>
                                 Thêm mới
                             </a>
@@ -63,7 +63,6 @@
     <script src="{{ asset('admin/js/buttons.server-side.js') }}"></script>
 @endpush
 
-
 @push('scripts')
     {{ $dataTable->scripts() }}
 
@@ -79,7 +78,7 @@
             $.ajax({
                 type: 'PATCH',
                 dataType: 'json',
-                url: '{{ route('admin.post.update.status') }}',
+                url: '{{ route('admin.customer.update.status') }}',
                 data: {
                     '_token': '{{ csrf_token() }}',
                     'status': status,
