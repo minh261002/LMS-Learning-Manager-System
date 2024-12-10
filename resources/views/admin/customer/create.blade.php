@@ -175,19 +175,8 @@
                             </div>
                         </div>
 
-                        <div class="card mt-3">
-                            <div class="card-header d-flex align-items-center justify-content-between">
-                                <h2 class="card-title mb-0">Vai trò</h2>
-                            </div>
-                            <div class="card-body">
-                                <select name="role" id="role" class="form-control">
-                                    <option value="user">Khách hàng</option>
-                                    <option value="instructor">
-                                        Giảng viên
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
+                        <input type="hidden" name="role" value="user">
+
 
                         <div class="card mt-3">
                             <div class="card-header d-flex align-items-center justify-content-between">

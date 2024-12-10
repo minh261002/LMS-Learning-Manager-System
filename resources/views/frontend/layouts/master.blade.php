@@ -27,11 +27,13 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/fancybox.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/tooltipster.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/gh/lelinh014756/fui-toast-js@master/assets/css/toast@1.0.1/fuiToast.min.css">
     <!-- end inject -->
 </head>
 
 <body>
-
+    <div id="fui-toast"></div>
 
     @include('frontend.partials.header')
 
@@ -49,6 +51,9 @@
 
 
     <!-- template js files -->
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/lelinh014756/fui-toast-js@master/assets/js/toast@1.0.1/fuiToast.min.js"></script>
     <script src="{{ asset('frontend/js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap-select.min.js') }}"></script>
@@ -69,6 +74,26 @@
             $('.preloader').fadeOut();
         });
     </script>
+
+    @if (session('success'))
+        <script>
+            FuiToast.success('{{ session('success') }}');
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            FuiToast.error('{{ session('error') }}');
+        </script>
+    @endif
+
+    @if ($errors->any())
+        <script>
+            @foreach ($errors->all() as $error)
+                FuiToast.error('{{ $error }}');
+            @endforeach
+        </script>
+    @endif
 
     @stack('scripts')
 </body>

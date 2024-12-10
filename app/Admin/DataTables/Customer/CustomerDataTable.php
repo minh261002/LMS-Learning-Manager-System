@@ -29,7 +29,7 @@ class CustomerDataTable extends BaseDataTable
     public function query()
     {
         return $this->repository->getByQueryBuilder(
-            ['role' => 'customer']
+            ['role' => 'user']
         );
     }
 

@@ -17,7 +17,8 @@
                     <div class="card card-item">
                         <div class="card-body">
                             <h3 class="card-title text-center fs-24 lh-35 pb-4">Đăng nhập</h3>
-                            <form method="post">
+                            <form method="post" action="{{ route('handleLogin') }}">
+                                @csrf
                                 <div class="input-box">
                                     <label class="label-text">Email</label>
                                     <div class="form-group">

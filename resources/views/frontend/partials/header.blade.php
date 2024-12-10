@@ -41,17 +41,38 @@
                                 </svg>
                             </button>
                         </div>
-                        <ul
-                            class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray pl-3 ml-3">
-                            <li class="d-flex align-items-center pr-3 mr-3 border-right border-right-gray">
-                                <i class="la la-sign-in mr-1"></i>
-                                <a href="{{ route('login') }}">Đăng nhập</a>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <i class="la la-user mr-1"></i>
-                                <a href="{{ route('register') }}">Đăng ký</a>
-                            </li>
-                        </ul>
+                        @if (auth()->guard('web')->check())
+                            <ul
+                                class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray pl-3 ml-3">
+                                <li class="d-flex align-items-center pr-3 mr-3 border-right border-right-gray">
+                                    <i class="la la-user mr-1"></i>
+                                    <a href="{{ route('login') }}">
+                                        {{ Auth::guard('web')->user()->name }}
+                                    </a>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <i class="la la-sign-out mr-1"></i>
+                                    <form action="{{ route('logout') }}" method="post" id="logout-form">
+                                        @csrf
+                                        <a style="cursor:pointer"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                            xuất</a>
+                                    </form>
+                                </li>
+                            </ul>
+                        @else
+                            <ul
+                                class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray pl-3 ml-3">
+                                <li class="d-flex align-items-center pr-3 mr-3 border-right border-right-gray">
+                                    <i class="la la-sign-in mr-1"></i>
+                                    <a href="{{ route('login') }}">Đăng nhập</a>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <i class="la la-user mr-1"></i>
+                                    <a href="{{ route('register') }}">Đăng ký</a>
+                                </li>
+                            </ul>
+                        @endif
                     </div><!-- end header-widget -->
                 </div><!-- end col-lg-6 -->
             </div><!-- end row -->

@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('ward_id', 10)->nullable();
             $table->string('address')->nullable();
             $table->dateTime('birthday')->nullable();
-            $table->string('image')->default('\admin\images\not-found.jpg');
+            $table->string('image')->default('/admin/images/not-found.jpg');
             $table->text('description')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

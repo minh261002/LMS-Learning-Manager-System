@@ -9,4 +9,7 @@ Route::get('/ajax/location', [LocationController::class, 'index'])->name('ajax.l
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/dang-nhap', [AuthController::class, 'login'])->name('login');
+Route::post('/dang-nhap', [AuthController::class, 'handleLogin'])->name('handleLogin');
 Route::get('/dang-ky', [AuthController::class, 'register'])->name('register');
+Route::post('/dang-ky', [AuthController::class, 'handleRegister'])->name('handleRegister');
+Route::post('/dang-xuat', [AuthController::class, 'logout'])->name('logout');

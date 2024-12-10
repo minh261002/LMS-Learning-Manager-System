@@ -20,7 +20,9 @@
                                 Đăng ký tài khoản
                             </h3>
                             <div class="section-block"></div>
-                            <form method="post">
+                            <form method="post" action="{{ route('handleRegister') }}">
+                                @csrf
+
                                 <div class="input-box">
                                     <label class="label-text">Họ và tên</label>
                                     <div class="form-group">
