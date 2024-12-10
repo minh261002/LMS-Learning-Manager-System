@@ -1,4 +1,4 @@
-@if ($is_identity == 2)
+@if ($is_identify == 2)
     <span class="badge bg-success text-success-fg">
         Đã định danh
     </span>

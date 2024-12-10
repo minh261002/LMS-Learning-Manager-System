@@ -27,7 +27,7 @@ return new class extends Migration {
             $table->string('experience')->nullable();
             $table->string('skill')->nullable();
             $table->string('language')->nullable();
-            $table->tinyInteger('is_identity')->default(1);
+            $table->tinyInteger('is_identify')->default(1);
             $table->tinyInteger('is_verify')->default(2);
             $table->tinyInteger('status')->default(1);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

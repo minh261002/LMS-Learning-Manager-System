@@ -56,12 +56,17 @@ class InstructorService implements InstructorServiceInterface
             $customerInfo = $data['info'];
             $instructorInfo = $data['instructor'];
 
-            $customer = $this->customerRepository->findOrFail($customerInfo['id']);
-            $customer->update($customerInfo);
+            if (isset($customerInfo['password'])) {
+                $customerInfo['password'] = Hash::make($customerInfo['password']);
+            }
 
-            $instructor = $this->repository->findOrFail($instructorInfo['id']);
-            $instructor->update($instructorInfo);
+            if (isset($customerInfo['image'])) {
+                $customerInfo['image'] = $customerInfo['image'] ?? '/admin/images/not-found.jpg';
+            }
 
+            $this->customerRepository->update($customerInfo['id'], $customerInfo);
+
+            $instructor = $this->repository->update($instructorInfo['id'], $instructorInfo);
             DB::commit();
             return $instructor;
         } catch (\Exception $e) {

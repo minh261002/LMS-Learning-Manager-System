@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h3 class="card-title">
-                        Quản lý giảng viên
+                        Chỉnh sửa thông tin
                     </h3>
 
                     <nav aria-label="breadcrumb">
@@ -22,7 +22,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('admin.customer.index') }}">
+                                <a href="{{ route('admin.instructor.index') }}">
                                     Quản lý giảng viên
                                 </a>
                             </li>
@@ -41,133 +41,46 @@
                 @csrf
                 @method('PUT')
 
-                <input type="hidden" name="id" value="{{ $instructor->id }}">
+                <input type="hidden" name="info[id]" value="{{ $instructor->user->id }}">
+                <input type="hidden" name="instructor[id]" value="{{ $instructor->id }}">
 
                 <div class="row">
                     <div class="col-md-9">
+
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">
-                                    Thông tin giảng viên
-                                </h3>
+                                <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#tabs-home-1" class="nav-link active" data-bs-toggle="tab"
+                                            aria-selected="true" role="tab">
+                                            Thông tin cá nhân
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#tabs-profile-1" class="nav-link" data-bs-toggle="tab"
+                                            aria-selected="false" role="tab" tabindex="-1">
+                                            Thông tin định danh
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#tabs-edu-1" class="nav-link" data-bs-toggle="tab" aria-selected="false"
+                                            role="tab" tabindex="-1">
+                                            Trình độ học vấn
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6 form-group mb-3">
-                                        <label for="name" class="form-label">
-                                            Họ và tên
-                                        </label>
-
-                                        <input type="text" class="form-control" name="name" id="name"
-                                            value="{{ old('name', $customer->name ?? '') }}">
+                                <div class="tab-content">
+                                    <div class="tab-pane active show" id="tabs-home-1" role="tabpanel">
+                                        @include('admin.instructor.form.edit-information')
+                                    </div>
+                                    <div class="tab-pane" id="tabs-profile-1" role="tabpanel">
+                                        @include('admin.instructor.form.edit-identify')
                                     </div>
 
-                                    <div class="col-md-6 form-group mb-3">
-                                        <label for="email" class="form-label">
-                                            Email
-                                        </label>
-
-                                        <input type="text" class="form-control" name="email" id="email"
-                                            value="{{ old('email', $customer->email ?? '') }}">
-                                    </div>
-
-                                    <div class="col-md-6 form-group mb-3">
-                                        <label for="phone" class="form-label">
-                                            Số điện thoại
-                                        </label>
-
-                                        <input type="text" class="form-control" name="phone" id="phone"
-                                            value="{{ old('phone', $customer->phone ?? '') }}">
-                                    </div>
-
-                                    <div class="col-md-6 form-group mb-3">
-                                        <label for="birthday" class="form-label">
-                                            Ngày sinh
-                                        </label>
-
-                                        <div class="input-icon mb-2">
-                                            <input class="form-control " placeholder="Chọn ngày" id="datepicker-icon"
-                                                value="{{ old('birthday', $customer->birthday ?? '') }}" name="birthday"
-                                                autocomplete="off">
-                                            <span class="input-icon-addon">
-                                                <i class="ti ti-calendar fs-1"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="desc" class="form-label">Mô tả</label>
-                                        <textarea name="description" cols="3" class="form-control">{{ old('description', $customer->description ?? '') }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if ($customer->is_facebook != 0 || $customer->is_google != 0)
-                            <div class="card mt-3">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="password" class="form-label">Mật khẩu</label>
-                                            <input type="password" class="form-control" id="password" name="password">
-                                            @error('password')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
-                                            <input type="password" class="form-control" id="password_confirmation"
-                                                name="password_confirmation">
-                                            @error('password_confirmation')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-
-                        <div class="card mt-3">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4 mb-3">
-                                        <label for="province_id" class="form-label">Chọn Tỉnh / Thành Phố</label>
-                                        <select name="province_id" class="form-control select2 province location"
-                                            data-target="districts">
-                                            <option value="0">[Chọn Tỉnh / Thành Phố]</option>
-                                            @if (isset($provinces))
-                                                @foreach ($provinces as $province)
-                                                    <option @if (old('province_id') == $province->code) selected @endif
-                                                        value="{{ $province->code }}">{{ $province->name }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-4 mb-3">
-                                        <label for="" class="form-label">Chọn Quận / Huyện </label>
-                                        <select name="district_id" class="form-control districts select2 location"
-                                            data-target="wards">
-                                            <option value="0">[Chọn Quận / Huyện]</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-4 mb-3">
-                                        <label for="" class="form-label">Chọn Phường / Xã </label>
-                                        <select name="ward_id" class="form-control select2 wards">
-                                            <option value="0">[Chọn Phường / Xã]</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-12 mb-3">
-                                        <label for="address" class="form-label">Địa chỉ</label>
-                                        <input type="text" class="form-control" id="address" name="address"
-                                            value="{{ old('address', $admin->address ?? '') }}">
-                                        @error('address')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                    <div class="tab-pane" id="tabs-edu-1" role="tabpanel">
+                                        @include('admin.instructor.form.edit-edu')
                                     </div>
                                 </div>
                             </div>
@@ -180,16 +93,64 @@
                                 <h2 class="card-title mb-0">Trạng thái</h2>
                             </div>
                             <div class="card-body">
-                                <select name="status" id="status" class="form-control select2">
-                                    <option value="2" @if (old('status', $customer->status ?? '') == 2) selected @endif>
-                                        Đang hoạt động
-                                    </option>
-                                    <option value="1" @if (old('status', $customer->status ?? '') == 1) selected @endif>
-                                        Tạm khóa
-                                    </option>
-                                </select>
+                                <div class="form-group mb-3">
+                                    <label for="info[status]" class="form-label">Trạng thái tài khoản</label>
+                                    <select name="info[status]" class="form-control">
+                                        <option value="2" {{ $instructor->user->status == 2 ? 'selected' : '' }}>
+                                            Đang hoạt động
+                                        </option>
+                                        <option value="1" {{ $instructor->user->status == 1 ? 'selected' : '' }}>
+                                            Tạm khóa
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="instructor[is_verify]" class="form-label">
+                                        Trạng thái duyệt
+                                    </label>
+
+                                    <select name="instructor[is_verify]" class="form-control">
+                                        <option value="1" {{ $instructor->is_verify == 1 ? 'selected' : '' }}>Chờ duyệt
+                                        </option>
+                                        <option value="2" {{ $instructor->is_verify == 2 ? 'selected' : '' }}>Đã duyệt
+                                        </option>
+                                        <option value="3" {{ $instructor->is_verify == 3 ? 'selected' : '' }}>Từ chối
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="instructor[status]" class="form-label">
+                                        Trạng thái giảng viên
+                                    </label>
+
+                                    <select name="instructor[status]" class="form-control">
+                                        <option value="2" {{ $instructor->status == 2 ? 'selected' : '' }}>Đang hoạt
+                                            động</option>
+                                        <option value="1" {{ $instructor->status == 1 ? 'selected' : '' }}>Tạm khóa
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="instructor[is_identify]" class="form-label">
+                                        Định danh
+                                    </label>
+
+                                    <select name="instructor[is_identify]" class="form-control">
+                                        <option value="2" {{ $instructor->is_identify == 2 ? 'selected' : '' }}>
+                                            Đã định danh
+                                        </option>
+                                        <option value="1" {{ $instructor->is_identify == 1 ? 'selected' : '' }}>
+                                            Chưa định danh
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
+
+                        <input type="hidden" name="info[role]" value="instructor">
 
                         <div class="card mt-3">
                             <div class="card-header d-flex align-items-center justify-content-between">
@@ -199,10 +160,9 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <span class="image img-cover image-target"><img class="w-100"
-                                                src="{{ old('image', $customer->image ?? '') ? old('image', $customer->image ?? '') : asset('admin/images/not-found.jpg') }}"
+                                                src="{{ $instructor->user->image ? $instructor->user->image : asset('admin/images/not-found.jpg') }}"
                                                 alt=""></span>
-                                        <input type="hidden" name="image"
-                                            value="{{ old('image', $customer->image ?? '') }}">
+                                        <input type="hidden" name="info[image]" value="{{ $instructor->user->image }}">
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +176,7 @@
                             </div>
 
                             <div class="card-body d-flex align-items-center justify-content-between gap-4">
-                                <a href="{{ route('admin.customer.index') }}" class="btn btn-secondary w-100">
+                                <a href="{{ route('admin.instructor.index') }}" class="btn btn-secondary w-100">
                                     Quay lại
                                 </a>
 
@@ -232,9 +192,11 @@
     </div>
 
     <script>
-        var province_id = '{{ isset($instructor->province_id) ? $instructor->province_id : old('province_id') }}'
-        var district_id = '{{ isset($instructor->district_id) ? $instructor->district_id : old('district_id') }}'
-        var ward_id = '{{ isset($instructor->ward_id) ? $instructor->ward_id : old('ward_id') }}'
+        var province_id =
+            '{{ isset($instructor->user->province_id) ? $instructor->user->province_id : old('province_id') }}'
+        var district_id =
+            '{{ isset($instructor->user->district_id) ? $instructor->user->district_id : old('district_id') }}'
+        var ward_id = '{{ isset($instructor->user->ward_id) ? $instructor->user->ward_id : old('ward_id') }}'
     </script>
 @endsection
 
@@ -255,7 +217,7 @@
     <script>
         const picker = new Litepicker({
             element: document.getElementById('datepicker-icon'),
-            format: "YYYY-MM-DD",
+            format: 'YYYY-MM-DD',
             showDropdowns: true,
             showWeekNumbers: false,
             singleMode: true,
@@ -273,6 +235,31 @@
             },
             setup: (picker) => {
                 picker.on('selected', (date1, date2) => {
+                    console.log(date1, date2);
+                });
+            }
+        });
+
+        const picker2 = new Litepicker({
+            element: document.getElementById('datepicker-icon-1'),
+            format: 'YYYY-MM-DD',
+            showDropdowns: true,
+            showWeekNumbers: false,
+            singleMode: true,
+            autoApply: true,
+            autoRefresh: true,
+            lang: 'vi-VN',
+            mobileFriendly: true,
+            resetButton: true,
+            autoRefresh: true,
+            dropdowns: {
+                minYear: null,
+                maxYear: null,
+                months: true,
+                years: true
+            },
+            setup: (picker2) => {
+                picker2.on('selected', (date1, date2) => {
                     console.log(date1, date2);
                 });
             }

@@ -69,7 +69,11 @@ class InstructorController extends Controller
 
     public function delete($id)
     {
-        $this->repository->delete($id);
+        $instructor = $this->repository->findOrFail($id);
+
+        $instructor->user->delete();
+        $instructor->delete();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Xóa thành công'
