@@ -41,7 +41,7 @@
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
                 <a href="{{ route('admin.login') }}" class="navbar-brand navbar-brand-autodark">
-                    <img src="{{ asset('admin/images/logo2.png') }}" class="" width="240px">
+                    <img src="{{ asset('frontend/images/logo.png') }}" class="" width="240px">
                 </a>
             </div>
             <div class="card card-md">
