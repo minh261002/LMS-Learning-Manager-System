@@ -5,6 +5,7 @@ use App\Admin\Http\Controllers\Category\CategoryController;
 use App\Admin\Http\Controllers\Customer\CustomerController;
 use App\Admin\Http\Controllers\Auth\AuthController;
 use App\Admin\Http\Controllers\Dashboard\DashboardController;
+use App\Admin\Http\Controllers\Instructor\InstructorController;
 use App\Admin\Http\Controllers\Module\ModuleController;
 use App\Admin\Http\Controllers\Permission\PermissionController;
 use App\Admin\Http\Controllers\Post\PostCatalogueController;
@@ -128,6 +129,27 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
             Route::middleware(['permission:deleteCustomer'])->group(function () {
                 Route::delete('/delete/{id}', [CustomerController::class, 'delete'])->name('delete');
+            });
+        });
+
+        Route::prefix('instructor')->as('instructor.')->group(function () {
+            Route::middleware(['permission:viewCustomer'])->group(function () {
+                Route::get('/', [InstructorController::class, 'index'])->name('index');
+            });
+
+            Route::middleware(['permission:createCustomer'])->group(function () {
+                Route::get('/create', [InstructorController::class, 'create'])->name('create');
+                Route::post('/store', [InstructorController::class, 'store'])->name('store');
+            });
+
+            Route::middleware(['permission:editCustomer'])->group(function () {
+                Route::get('/edit/{id}', [InstructorController::class, 'edit'])->name('edit');
+                Route::put('/update', [InstructorController::class, 'update'])->name('update');
+                Route::patch('/update-status', [InstructorController::class, 'updateStatus'])->name('update.status');
+            });
+
+            Route::middleware(['permission:deleteCustomer'])->group(function () {
+                Route::delete('/delete/{id}', [InstructorController::class, 'delete'])->name('delete');
             });
         });
 

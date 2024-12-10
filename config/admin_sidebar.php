@@ -219,6 +219,27 @@ return [
         ]
     ],
     [
+        'active' => ['admin.instructor.*'],
+        'show' => ['admin.instructor.*'],
+        'title' => 'Người hướng dẫn',
+        'icon' => 'ti ti-user-star fs-2',
+        'permission' => ['viewInstructor', 'createInstructor', 'editInstructor', 'deleteInstructor'],
+        'children' => [
+            [
+                'title' => 'Thêm mới',
+                'route' => 'admin.instructor.create',
+                'icon' => 'ti ti-plus fs-3 me-2',
+                'permission' => 'createInstructor'
+            ],
+            [
+                'title' => 'Danh sách',
+                'route' => 'admin.instructor.index',
+                'icon' => 'ti ti-list fs-3 me-2',
+                'permission' => 'viewInstructor'
+            ]
+        ]
+    ],
+    [
         'active' => ['admin.admin.*'],
         'show' => ['admin.admin.*'],
         'title' => 'Quản trị viên',
