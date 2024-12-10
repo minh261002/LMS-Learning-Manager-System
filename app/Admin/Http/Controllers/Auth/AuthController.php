@@ -29,11 +29,9 @@ class AuthController extends Controller
         return redirect()->back()->with('error', 'Thông tin đăng nhập không chính xác');
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         auth()->guard('admin')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
         return redirect()->route('admin.login')->with('success', 'Đăng xuất thành công');
     }
 

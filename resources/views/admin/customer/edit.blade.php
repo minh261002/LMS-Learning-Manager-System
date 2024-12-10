@@ -104,7 +104,7 @@
                             </div>
                         </div>
 
-                        @if ($customer->is_facebook != 0 || $customer->is_google != 0)
+                        @if ($customer->login_type == 1)
                             <div class="card mt-3">
                                 <div class="card-body">
                                     <div class="row">
@@ -190,6 +190,7 @@
                                 </select>
                             </div>
                         </div>
+                        <input type="hidden" name="role" value="user">
 
                         <div class="card mt-3">
                             <div class="card-header d-flex align-items-center justify-content-between">
