@@ -1,6 +1,57 @@
 <?php
 
 return [
+    'instructor' => [
+        'user_id' => [
+            'title' => 'Họ và tên',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle'
+        ],
+        'course' => [
+            'title' => 'Khóa học',
+            'orderable' => false,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle'
+        ],
+        'order' => [
+            'title' => 'Đơn hàng',
+            'orderable' => false,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle'
+        ],
+        'is_identity' => [
+            'title' => 'Định danh',
+            'orderable' => false,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle'
+        ],
+        'is_verify' => [
+            'title' => 'Duyệt',
+            'orderable' => false,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle'
+        ],
+        'status' => [
+            'title' => 'Trạng thái',
+            'orderable' => false,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle'
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle'
+        ],
+    ],
     'orders' => [
         'invoice_number' => [
             'title' => 'Mã đơn hàng',

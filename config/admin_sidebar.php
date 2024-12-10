@@ -211,16 +211,31 @@ return [
                 'permission' => 'createCustomer'
             ],
             [
-                'title' => 'Khách hàng',
+                'title' => 'Danh sách',
                 'route' => 'admin.customer.index',
                 'icon' => 'ti ti-list fs-3 me-2',
                 'permission' => 'viewCustomer'
+            ]
+        ]
+    ],
+    [
+        'active' => ['admin.instructor.*'],
+        'show' => ['admin.instructor.*'],
+        'title' => 'Người hướng dẫn',
+        'icon' => 'ti ti-user-star fs-2',
+        'permission' => ['viewInstructor', 'createInstructor', 'editInstructor', 'deleteInstructor'],
+        'children' => [
+            [
+                'title' => 'Thêm mới',
+                'route' => 'admin.instructor.create',
+                'icon' => 'ti ti-plus fs-3 me-2',
+                'permission' => 'createInstructor'
             ],
             [
-                'title' => 'Người hướng dẫn',
-                'route' => 'admin.customer.instructor',
+                'title' => 'Danh sách',
+                'route' => 'admin.instructor.index',
                 'icon' => 'ti ti-list fs-3 me-2',
-                'permission' => 'viewCustomer'
+                'permission' => 'viewInstructor'
             ]
         ]
     ],

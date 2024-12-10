@@ -1,66 +1,66 @@
 <?php
 
-namespace App\Admin\DataTables\Customer;
+namespace App\Admin\DataTables\Category;
 
 use App\Admin\DataTables\BaseDataTable;
-use App\Admin\Repositories\Customer\CustomerRepositoryInterface;
+use App\Admin\Repositories\Category\CategoryRepositoryInterface;
 
-class InstructorDataTable extends BaseDataTable
+class CategoryDataTable extends BaseDataTable
 {
-    protected $nameTable = 'instructorTable';
+    protected $nameTable = 'categoryTable';
     protected $repository;
 
     public function __construct(
-        CustomerRepositoryInterface $repository
+        CategoryRepositoryInterface $repository
     ) {
         $this->repository = $repository;
         parent::__construct();
     }
+
     public function setView(): void
     {
         $this->view = [
-            'action' => 'admin.customer.instructor.datatable.action',
-            'status' => 'admin.customer.instructor.datatable.status',
-            'list_order' => 'admin.customer.instructor.datatable.list_order',
-            'list_wishlist' => 'admin.customer.instructor.datatable.list_wishlist',
-            'type' => 'admin.customer.instructor.datatable.type',
+            'action' => 'admin.category.datatable.action',
+            'image' => 'admin.category.datatable.image',
+            'status' => 'admin.category.datatable.status',
         ];
     }
+
     public function query()
     {
-        return $this->repository->getByQueryBuilder([
-            'role' => 'instructor',
-        ]);
+        return $this->repository->getFlatTreeBuilder();
     }
 
     public function setColumnSearch(): void
     {
 
-        $this->columnAllSearch = [0, 1, 2];
+        $this->columnAllSearch = [1, 2, 3];
         $this->columnSearchSelect = [
             [
-                'column' => 2,
+                'column' => 3,
                 'data' => [
-                    '1' => 'Tạm khoá',
+                    '1' => 'Không hoạt động',
                     '2' => 'Đang hoạt động',
                 ]
-            ],
+            ]
         ];
 
     }
+
     protected function setCustomColumns(): void
     {
-        $this->customColumns = config('datatable_columns.customers', []);
+        $this->customColumns = config('datatable_columns.categories', []);
     }
 
     protected function setCustomEditColumns(): void
     {
         $this->customEditColumns = [
             'action' => $this->view['action'],
+            'image' => $this->view['image'],
             'status' => $this->view['status'],
-            'list_order' => $this->view['list_order'],
-            'list_wishlist' => $this->view['list_wishlist'],
-            'type' => $this->view['type'],
+            'name' => function ($query) {
+                return generate_text_depth_tree($query->depth) . $query->name;
+            },
         ];
     }
 
@@ -75,10 +75,8 @@ class InstructorDataTable extends BaseDataTable
     {
         $this->customRawColumns = [
             'action',
+            'image',
             'status',
-            'list_order',
-            'list_wishlist',
-            'type',
         ];
     }
 

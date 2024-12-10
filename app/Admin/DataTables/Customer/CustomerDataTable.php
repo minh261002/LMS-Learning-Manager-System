@@ -28,7 +28,9 @@ class CustomerDataTable extends BaseDataTable
     }
     public function query()
     {
-        return $this->repository->getQueryBuilderOrderBy();
+        return $this->repository->getByQueryBuilder(
+            ['role' => 'customer']
+        );
     }
 
     public function setColumnSearch(): void
