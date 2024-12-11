@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->text('content')->nullable();
             $table->integer('order')->default(0);
             $table->integer('status')->default(1);
+            $table->boolean('is_preview')->default(0);
+            $table->boolean('is_course_preview')->default(0);
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->timestamps();
         });

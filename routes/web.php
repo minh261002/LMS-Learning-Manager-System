@@ -13,3 +13,5 @@ Route::post('/dang-nhap', [AuthController::class, 'handleLogin'])->name('handleL
 Route::get('/dang-ky', [AuthController::class, 'register'])->name('register');
 Route::post('/dang-ky', [AuthController::class, 'handleRegister'])->name('handleRegister');
 Route::post('/dang-xuat', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/admission', [HomeController::class, 'admission'])->name('admission');
