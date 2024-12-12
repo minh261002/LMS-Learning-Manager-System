@@ -1,5 +1,6 @@
 <?php
 
+use App\Frontend\Http\Controllers\AdmissionController;
 use App\Frontend\Http\Controllers\AuthController;
 use App\Frontend\Http\Controllers\HomeController;
 use App\Http\Controllers\Ajax\LocationController;
@@ -14,4 +15,4 @@ Route::get('/dang-ky', [AuthController::class, 'register'])->name('register');
 Route::post('/dang-ky', [AuthController::class, 'handleRegister'])->name('handleRegister');
 Route::post('/dang-xuat', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/admission', [HomeController::class, 'admission'])->name('admission');
+Route::get('/admission', [AdmissionController::class, 'index'])->name('admission');

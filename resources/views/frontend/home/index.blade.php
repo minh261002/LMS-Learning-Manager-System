@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title', 'Home')
+@section('title', 'Aduca - Hệ thống học trực tuyến')
 
 @section('content')
     <div class="preloader">
